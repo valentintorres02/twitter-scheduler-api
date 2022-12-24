@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { PostTweetInput } from 'src/dto/tweet';
-import { TwitterAPIService } from 'src/services/twitter.service';
+import { PostTweetInput } from '../dto/tweet';
+import { TwitterAPIService } from '../services/twitter.service';
 
 @Controller('tweet')
 export class TweetController {

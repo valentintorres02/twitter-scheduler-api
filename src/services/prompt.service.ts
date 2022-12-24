@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { EditPromptInput } from 'src/dto/prompt';
+import { EditPromptInput } from '../dto/prompt';
 import { PrismaService } from './prisma.service';
 
 @Injectable()

@@ -7,8 +7,8 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { CreatePromptInput, EditPromptInput } from 'src/dto/prompt';
-import { PromptService } from 'src/services/prompt.service';
+import { CreatePromptInput, EditPromptInput } from '../dto/prompt';
+import { PromptService } from '../services/prompt.service';
 
 @Controller('prompt')
 export class PromptController {
