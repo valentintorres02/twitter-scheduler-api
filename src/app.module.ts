@@ -5,10 +5,12 @@ import { TwitterAPIService } from './services/twitter.service';
 import { PromptService } from './services/prompt.service';
 import { ConfigModule } from '@nestjs/config';
 import { PrismaService } from './services/prisma.service';
+import configuration from './config/configuration';
+import { TwitterApi } from 'twitter-api-v2';
 
 @Module({
-  imports: [ConfigModule.forRoot()],
+  imports: [ConfigModule.forRoot({ load: [configuration], isGlobal: true })],
   controllers: [TweetController, PromptController],
-  providers: [TwitterAPIService, PromptService, PrismaService],
+  providers: [TwitterAPIService, PromptService, PrismaService, TwitterApi],
 })
 export class AppModule {}

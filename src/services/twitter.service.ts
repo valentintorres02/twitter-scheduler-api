@@ -1,21 +1,27 @@
 import {
   BadRequestException,
   InternalServerErrorException,
+  Injectable,
 } from '@nestjs/common';
-import { config } from 'src/config/config';
+import { ConfigService } from '@nestjs/config';
 import { TwitterApi } from 'twitter-api-v2';
 import { PrismaService } from './prisma.service';
 import { PromptService } from './prompt.service';
 
+@Injectable()
 export class TwitterAPIService {
-  private userClient: TwitterApi;
-  private promptService: PromptService;
-  private prisma: PrismaService;
-
-  constructor() {
-    this.prisma = new PrismaService();
-    this.userClient = new TwitterApi(config.tokens);
-    this.promptService = new PromptService(this.prisma);
+  constructor(
+    private readonly userClient: TwitterApi,
+    private readonly promptService: PromptService,
+    private readonly prisma: PrismaService,
+    private readonly configService: ConfigService,
+  ) {
+    this.userClient = new TwitterApi({
+      appKey: this.configService.getOrThrow<string>('CONSUMER_KEY'),
+      appSecret: this.configService.getOrThrow<string>('CONSUMER_SECRET'),
+      accessToken: this.configService.getOrThrow<string>('ACCESS_TOKEN'),
+      accessSecret: this.configService.getOrThrow<string>('ACCESS_SECRET'),
+    });
   }
 
   public async post(text?: string) {
@@ -35,7 +41,7 @@ export class TwitterAPIService {
   }
 
   public async postNextTweet() {
-    const nextPrompt = await prisma?.prompt.findFirstOrThrow({
+    const nextPrompt = await this.prisma.prompt.findFirstOrThrow({
       orderBy: { priority: 'asc' },
     });
 

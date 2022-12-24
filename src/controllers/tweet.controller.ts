@@ -4,11 +4,7 @@ import { TwitterAPIService } from 'src/services/twitter.service';
 
 @Controller('tweet')
 export class TweetController {
-  private readonly twitterService: TwitterAPIService;
-
-  constructor() {
-    this.twitterService = new TwitterAPIService();
-  }
+  constructor(private twitterService: TwitterAPIService) {}
 
   @Post()
   public async tweet(@Body() body: PostTweetInput) {
