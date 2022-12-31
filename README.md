@@ -39,7 +39,7 @@ Configure environment variables
 
     npm run test
 
-### Style test
+### Code style
 
 [ESLint](https://eslint.org) is used as the linter and [Prettier](https://prettier.io) as the code formatter
 
