@@ -21,13 +21,15 @@ Install Node and project dependencies
 
     npm run install
 
-Generate prisma client (just for the first time)
-
-    npx prisma generate
-
 Initialize docker compose
 
-    docker-compose up
+    docker-compose up -d (for the first time)
+    docker-compose start (every time you run the server)
+
+Run prisma migrations and generate schema (just for the first time)
+
+    npx prisma db push
+    npx prisma generate
 
 Configure environment variables
 
