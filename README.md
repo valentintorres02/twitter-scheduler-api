@@ -58,5 +58,5 @@ Configure environment variables
 
 ## Authors
 
-- **Valentin Torres** - Creator
-  [Valentin Torres](https://github.com/valentintorres02)
+- [Valentin Torres](https://github.com/valentintorres02)- Creator
+  
